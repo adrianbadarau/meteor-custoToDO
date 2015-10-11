@@ -1,0 +1,57 @@
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom ToDoList</title>
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="header clearfix">
+        <h3 class="text-muted">Custo ToDO</h3>
+        {{> loginButtons}}
+      </div>
+
+      <div class="jumbotron">
+        {{> todoForm}}
+      </div>
+
+      <div class="row marketing">
+        <div class="col-lg-6">
+		    {{> main}}
+        </div>
+      </div>
+
+      <footer class="footer">
+        <p>&copy; Custo ToDO 2015</p>
+      </footer>
+
+    </div> <!-- /container -->
+  </body>
+
+  <template name="main">
+    {{#each todos}}
+    <ul>
+        <li class="{{#if checked}} checked {{/if}}"> 
+            {{#if currentUser}}
+                <input type="checkbox" checked="{{checked}}" class="toggle-checked">
+                <button class="deleteTodo">&times;</button>
+            {{/if}} 
+            <span class="text">{{text}}</span>
+        </li>
+    </ul>
+    {{/each}}  
+  </template>
+
+  <template name="todoForm">
+      <h1>Add new Item</h1>
+      {{#if currentUser}}
+      <form class="newTodo">
+          <div class="form-group">
+              <input type="text" name="text" class="form-control" placeholder="Add new todo item!">
+          </div>
+      </form>
+      {{/if}}
+  </template>
